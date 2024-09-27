@@ -2,14 +2,7 @@
 
 ## Introduction
 
-- **What will the application do?**  
-  I want to create an application will allow users to track their daily water and beverage intake. It will compare the amounts of water and other drinks consumed. If the user meets the recommended daily water intake, the app will provide positive feedback. However, if the user consumes too many beverages instead of water, the app will issue a warning, encouraging them to drink more water.
-
-- **Who will use it?**  
-  People who want to monitor and improve their hydration habits, particularly those who may not drink enough water and tend to rely on sugary or other types of beverages.
-
-- **Why is this project of interest to you?**  
-  Many people today prefer drinking flavored beverages over water, mistakenly thinking that these drinks can quench their thirst just as well. However, this habit can have serious health consequences, including the risk of kidney disease. At one point before, I have caused physical discomfort from drinking too many drinks. This project is important to me because I want to promote healthy hydration habits to stay healthy. The app can also help not only myself, but also other encourage people to stay hydrated by providing them with useful insights into their drinking habits.
+I am developing an application that will allow users to track their daily water and beverage intake. The app will compare the amount of water consumed with other drinks, offering **positive feedback** when users meet the recommended daily water intake. However, if the user consumes too many beverages instead of water, the app will provide a **warning**, which encourage poeple to get healthier hydration habits. This project is aimed at people who want to monitor and improve their hydration, particularly those who tend to rely on sugary or flavored drinks. I’ve personally experienced the negative effects of consuming too many drinks, which led to physical discomfort. This has inspired me to build this app to promote healthier hydration and provide users with valuable insights into their drinking habits, helping them make better choices to stay healthy.
 
 
 ## User Stories:
