@@ -39,9 +39,27 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: processes user command
     public void processCommand(String command) {
-
+        if (command.equals("a")) {
+            addDrinkRecord();
+        } else if (command.equals("v")) {
+            viewDrinkRecord();
+        } else {
+            System.out.println("Selection not valid...");
+        }
     }
-    
+
+    // MODIFIES: this
+    // EFFECTS: adds a drink record to the list of drinkRecords
+    public void addDrinkRecord() {
+        //TODO: inplement
+    }
+
+    // MODIFIES: this
+    // EFFECTS: displays all drinkRecords
+    public void viewDrinkRecord() {
+        //TODO: inplement
+    }
+
     // MODIFIES: this
     // EFFECTS: initalize drinkrecordsummary
     public void init() { 
