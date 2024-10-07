@@ -155,7 +155,7 @@ public class DrinkRecordSummary {
         return waterAmount;
     }
 
-    // EFFECTS: return the amount of other drinks in the list
+    // EFFECTS: return the amount of other drinks (non-water) in the list
     public int getotherDrinkRecord(List<DrinkRecord> drinkRecords) {
         int otherDrinksAmount = 0;
         for (DrinkRecord drink : drinkRecords) {
@@ -176,8 +176,7 @@ public class DrinkRecordSummary {
     }
 
 
-    // MODIFIES: this
-    // EFFECTS: if there's other drinks other than water, display all the amount of other drinks
+    // EFFECTS: if there's other drinks (non-water), display all the amount of other drinks
     public void othersDrinkRecord(List<DrinkRecord> drinkRecords) {
         if (getotherDrinkRecord(drinkRecords) == 0) {
             System.out.println("You haven't had anything other than water !!");
