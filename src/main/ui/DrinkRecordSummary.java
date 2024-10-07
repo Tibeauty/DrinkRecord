@@ -10,6 +10,8 @@ public class DrinkRecordSummary {
     private List<DrinkRecord> drinkRecords;
     private Scanner input;
 
+    private int currentRecordIndex = 0;
+
      // EFFECTS: runs the DrinkRecordSummary application
     public DrinkRecordSummary() {
         runSummary();
@@ -78,12 +80,29 @@ public class DrinkRecordSummary {
         }
 
         displayViewMenu();
+        String command = null;
+        while (!command.equals("q")) {
+            DrinkRecord currentDrinkRecord = drinkRecords.get(this.currentRecordIndex);
+            displayDrinkRecords(drinkRecords);
+            command = input.nextLine();
+            handleViewCommands(command, drinkRecords);
+        }
+        this.currentRecordIndex = 0;
+        
+    }
+ 
+    // MODIFIES: this
+    // EFFECTS: process the user's input in the view drink record menu
+    public void handleViewCommands(String input, List<DrinkRecord> drinkRecords) {
+
     }
 
     // EFFECTS: displays a list of commands that can be used in the view drink records menu
     public void displayViewMenu()  {
-        System.out.println("Enter 's' to select one type of drink");
-        System.out.println("Enter 'f' to get a feedback for your drinking records");
+        System.out.println("Enter 's' to show the amount of this drink");
+        System.out.println("Enter 'n' to move to the next flashcard.");
+        System.out.println("Enter 'p' to move to the previous flashcard.");
+        System.out.println("Enter 'q' to return to the menu");
     }
 
     // MODIFIES: this
@@ -99,6 +118,7 @@ public class DrinkRecordSummary {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> Add a new drink record");
         System.out.println("\tv -> View all drink records");
+        System.out.println("\tf -> Get a feedback for your drinking records");
         System.out.println("\tq -> Exit the application");
     }
  
