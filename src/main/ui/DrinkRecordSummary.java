@@ -42,7 +42,7 @@ public class DrinkRecordSummary {
         if (command.equals("a")) {
             addDrinkRecord();
         } else if (command.equals("v")) {
-            viewDrinkRecord();
+            viewDrinkRecords();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -64,9 +64,15 @@ public class DrinkRecordSummary {
     }
 
     // MODIFIES: this
-    // EFFECTS: displays all drinkRecords
-    public void viewDrinkRecord() {
-        //TODO: inplement
+    // EFFECTS: view all drinkRecords
+    public void viewDrinkRecords() {
+        displayDrinkRecords(this.drinkRecords);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: display exist list of drink records and handles inputs to related to viewing the drinkRecords
+    public void displayDrinkRecords(List<DrinkRecord> drinkRecords) {
+
     }
 
     // MODIFIES: this
