@@ -125,13 +125,21 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: if there exists another drink record to display, increments the current drinkrecord index
     public void getNextDrinkRecord(List<DrinkRecord> drinkRecords) {
-
+        if (this.currentRecordIndex >= drinkRecords.size() - 1) {
+            System.out.println("Error: No more drinking record to display");
+        } else {
+            this.currentRecordIndex++;
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: if there exists previous drink record to display, decrements the current drinkrecord index
     public void getPreviousDrinkRecord(List<DrinkRecord> drinkRecords) {
-
+        if (this.currentRecordIndex <= 0) {
+            System.out.println("Error: No more previous drinking record to display");
+        } else {
+            this.currentRecordIndex--;
+        }
     }
     
     // EFFECTS: displays a list of commands that can be used in the view drink records menu
