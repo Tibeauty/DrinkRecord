@@ -101,15 +101,39 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: process the user's command in the view drink record menu
     public void handleViewCommands(String command, List<DrinkRecord> drinkRecords) {
+        System.out.print("\n");
+
+        DrinkRecord currentDrinkRecord = drinkRecords.get(currentRecordIndex);
         if (command.equals("s")) {
-            displayDrinkAmount();
-        } else if (command.equals("v")) {
-            viewDrinkRecords();
+            displayDrinkAmount(currentDrinkRecord);
+        } else if (command.equals("n")) {
+            getNextDrinkRecord(drinkRecords);
+        } else if (command.equals("p")) {
+            getPreviousDrinkRecord(drinkRecords);
+        } else if (command.equals("q")) {
+            System.out.println("Returning to the menu...");
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
+    // EFFECTS：display the drinking amount of the given type of drink
+    public void displayDrinkAmount(DrinkRecord drinkRecord) {
+        System.out.println("You drank " + drinkRecord.getAmount() + " of " + drinkRecord.getType());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if there exists another drink record to display, increments the current drinkrecord index
+    public void getNextDrinkRecord(List<DrinkRecord> drinkRecords) {
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if there exists previous drink record to display, decrements the current drinkrecord index
+    public void getPreviousDrinkRecord(List<DrinkRecord> drinkRecords) {
+
+    }
+    
     // EFFECTS: displays a list of commands that can be used in the view drink records menu
     public void displayViewMenu()  {
         System.out.println("Enter 's' to show the amount of this drink");
