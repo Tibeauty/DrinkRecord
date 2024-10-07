@@ -189,7 +189,12 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: remove give drinkRecord from the list of drinkRecords
     public void removeDrinkRecord(DrinkRecord drinkRecord) {
-        //TODO
+        if (this.drinkRecords.contains(drinkRecord)) {
+            this.drinkRecords.remove(drinkRecord);
+            System.out.println("The drinking record has been successfully removed.");
+        } else {
+            System.out.println("The drinking record was not found.");
+        }
     }
 
     // MODIFIES: this
