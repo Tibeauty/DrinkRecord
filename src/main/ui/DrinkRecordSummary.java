@@ -143,15 +143,11 @@ public class DrinkRecordSummary {
         }
     }
 
-    // EFFECTS: if there is water record, display the water amount
-    public void waterDrinkRecord(List<DrinkRecord> drinkRecords) {
-        //TODO
-    }
 
     // EFFECTS: return the amount of water in the list
     public int getwaterDrinkRecord(List<DrinkRecord> drinkRecords) {
         int waterAmount = 0;
-        for (DrinkRecord drink : this.drinkRecords) {
+        for (DrinkRecord drink : drinkRecords) {
             if(drink.getType().equalsIgnoreCase("water")) {
                 waterAmount += drink.getAmount();
             } 
@@ -162,7 +158,7 @@ public class DrinkRecordSummary {
     // EFFECTS: return the amount of other drinks in the list
     public int getotherDrinkRecord(List<DrinkRecord> drinkRecords) {
         int otherDrinksAmount = 0;
-        for (DrinkRecord drink : this.drinkRecords) {
+        for (DrinkRecord drink : drinkRecords) {
             if(!drink.getType().equalsIgnoreCase("water")) {
                 otherDrinksAmount += drink.getAmount();
             } 
@@ -170,10 +166,24 @@ public class DrinkRecordSummary {
         return otherDrinksAmount;
     }
 
+    // EFFECTS: if there is water record, display the water amount
+    public void waterDrinkRecord(List<DrinkRecord> drinkRecords) {
+        if (getwaterDrinkRecord(drinkRecords) == 0) {
+            System.out.println("You haven't been drinking any water !!");
+        } else {
+            System.out.println("Great! You have been drinking " + getwaterDrinkRecord(drinkRecords) + " mL water");
+        }
+    }
+
+
     // MODIFIES: this
     // EFFECTS: if there's other drinks other than water, display all the amount of other drinks
     public void othersDrinkRecord(List<DrinkRecord> drinkRecords) {
-        //TODO
+        if (getotherDrinkRecord(drinkRecords) == 0) {
+            System.out.println("You haven't had anything other than water !!");
+        } else {
+            System.out.println("You have been drinking " + getwaterDrinkRecord(drinkRecords) + " mL other drinks");
+        }
     }
 
     // MODIFIES: this
