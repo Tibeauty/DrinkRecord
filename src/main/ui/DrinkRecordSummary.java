@@ -45,7 +45,7 @@ public class DrinkRecordSummary {
             addDrinkRecord();
         } else if (command.equals("v")) {
             viewDrinkRecords();
-        } else if (command.equals("g")) {
+        } else if (command.equals("f")) {
             getFeedback();
         }else {
             System.out.println("Selection not valid...");
@@ -54,6 +54,11 @@ public class DrinkRecordSummary {
 
     // EFFECTS: give positive/negative feedback based on the amount of water and other drinks
     public void getFeedback() {
+        if (drinkRecords.isEmpty()) {
+            System.out.println("Error: No drinking record to summary. Trying adding a drinking record first!");
+            return;
+        }
+
         int waterAmount = 0;
         int otherDrinksAmount = 0;
         for (DrinkRecord drink : this.drinkRecords) {
@@ -65,10 +70,10 @@ public class DrinkRecordSummary {
         }
         if(waterAmount >= otherDrinksAmount) {
             System.out.println("Great! You have a healthy drinking record");
-            System.out.println("Keep it up! (๑•̀ㅂ•́)و✧");
+            System.out.println("Keep it up! (^v^)");
         } else {
             System.out.println("Sorry, you have a unhealthy drinking record");
-            System.out.println("Try to drink more water! (｡•́︿•̀｡)");
+            System.out.println("Try to drink more water! (*X*)");
         }
     }
 
