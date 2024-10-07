@@ -22,10 +22,10 @@ public class DrinkRecordSummary {
         String command = null;
         init();
 
-        System.out.println("Welcome to the Water Record App!");
+        System.out.println("Welcome to the Drinking Record App!");
         while (keepGoing) {
             displayMenu();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("q")) {
@@ -51,7 +51,16 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: adds a drink record to the list of drinkRecords
     public void addDrinkRecord() {
-        //TODO: inplement
+        System.out.println("Please enter the drink's type");
+        String type = input.nextLine();
+
+        System.out.println("Please enter the drinking amount");
+        int amount = input.nextInt();
+
+        DrinkRecord drinkRecord = new DrinkRecord(type, amount);
+        this.drinkRecords.add(drinkRecord);
+        System.out.println("\nNew drinking record successfully added!");
+
     }
 
     // MODIFIES: this
