@@ -56,7 +56,7 @@ public class DrinkRecordSummary {
         System.out.println("Please enter the drink's type");
         String type = input.nextLine();
 
-        System.out.println("Please enter the drinking amount");
+        System.out.println("Please enter the drinking amount (mL)");
         int amount = input.nextInt();
 
         DrinkRecord drinkRecord = new DrinkRecord(type, amount);
@@ -83,7 +83,7 @@ public class DrinkRecordSummary {
         String command = null;
         while (!command.equals("q")) {
             DrinkRecord currentDrinkRecord = drinkRecords.get(this.currentRecordIndex);
-            displayDrinkRecords(drinkRecords);
+            displayDrinkRecord(currentDrinkRecord);
             command = input.nextLine();
             handleViewCommands(command, drinkRecords);
         }
@@ -91,10 +91,23 @@ public class DrinkRecordSummary {
         
     }
  
-    // MODIFIES: this
-    // EFFECTS: process the user's input in the view drink record menu
-    public void handleViewCommands(String input, List<DrinkRecord> drinkRecords) {
+    // EFFECTS: display the given drinking record
+    public void displayDrinkRecord(DrinkRecord drinkRecord) {
+        System.out.println("-----------------------------------");
+        System.out.println("Drinking Record #" + (this.currentRecordIndex + 1));
+        System.out.println(drinkRecord.getType());
+    }
 
+    // MODIFIES: this
+    // EFFECTS: process the user's command in the view drink record menu
+    public void handleViewCommands(String command, List<DrinkRecord> drinkRecords) {
+        if (command.equals("s")) {
+            displayDrinkAmount();
+        } else if (command.equals("v")) {
+            viewDrinkRecords();
+        } else {
+            System.out.println("Selection not valid...");
+        }
     }
 
     // EFFECTS: displays a list of commands that can be used in the view drink records menu
