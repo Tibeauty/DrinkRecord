@@ -11,6 +11,12 @@ public class DrinkRecord {
     }
 
     // MODIFIES: this
+    // EFFECTS: increase the amount by the specified value
+    public void addAmount(int additionalAmount) {
+        amount += additionalAmount;
+    }
+
+    // MODIFIES: this
     // EFFECTS: sets the DrinkRecord type to the new, given type
     public void setType(String newtype) {
         type = newtype;
