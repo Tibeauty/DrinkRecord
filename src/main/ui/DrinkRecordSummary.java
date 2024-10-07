@@ -80,7 +80,7 @@ public class DrinkRecordSummary {
         }
 
         displayViewMenu();
-        String command = null;
+        String command = "";
         while (!command.equals("q")) {
             DrinkRecord currentDrinkRecord = drinkRecords.get(this.currentRecordIndex);
             displayDrinkRecord(currentDrinkRecord);
@@ -106,6 +106,8 @@ public class DrinkRecordSummary {
         DrinkRecord currentDrinkRecord = drinkRecords.get(currentRecordIndex);
         if (command.equals("s")) {
             displayDrinkAmount(currentDrinkRecord);
+        } else if (command.equals("a")) {
+            updateDrinkRecord(currentDrinkRecord);
         } else if (command.equals("n")) {
             getNextDrinkRecord(drinkRecords);
         } else if (command.equals("p")) {
@@ -116,6 +118,15 @@ public class DrinkRecordSummary {
             System.out.println("Selection not valid...");
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: add given amount to the current drink record
+    public void updateDrinkRecord(DrinkRecord drinkRecord) {
+        System.out.println("Please enter the amount you want add for " + drinkRecord.getType());
+        int additionalAmount = input.nextInt();
+        drinkRecord.addAmount(additionalAmount);
+    }
+
 
     // EFFECTS：display the drinking amount of the given type of drink
     public void displayDrinkAmount(DrinkRecord drinkRecord) {
@@ -145,6 +156,7 @@ public class DrinkRecordSummary {
     // EFFECTS: displays a list of commands that can be used in the view drink records menu
     public void displayViewMenu()  {
         System.out.println("Enter 's' to show the amount of this drink");
+        System.out.println("Enter 'a' to add drinking amount to this drink.");
         System.out.println("Enter 'n' to move to the next flashcard.");
         System.out.println("Enter 'p' to move to the previous flashcard.");
         System.out.println("Enter 'q' to return to the menu");
