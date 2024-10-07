@@ -10,6 +10,7 @@ public class DrinkRecord {
         this.amount = amount;
     }
 
+    // REQUIRES: additionalAmount > 0
     // MODIFIES: this
     // EFFECTS: increase the amount by the specified value
     public void addAmount(int additionalAmount) {

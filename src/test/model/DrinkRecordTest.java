@@ -25,16 +25,25 @@ public class DrinkRecordTest {
 
     @Test
     void testaddamount() {
-
+        d1.addAmount(150);
+        assertEquals(250, d1.getAmount());
+        d1.addAmount(200);
+        assertEquals(450, d1.getAmount());
+        d2.addAmount(10);
+        assertEquals(310, d2.getAmount());
     }
 
     @Test
     void testSetters() {
-
+        d1.setAmount(400);
+        assertEquals(400, d1.getAmount());
+        d2.setType("soda");
+        assertEquals("soda", d2.getType());
     }
 
     @Test
     void testGetters() {
-        
+        assertEquals("cola", d2.getType());
+        assertEquals(100, d1.getAmount());
     }
 }
