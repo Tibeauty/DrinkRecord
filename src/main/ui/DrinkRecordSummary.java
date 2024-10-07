@@ -18,9 +18,15 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: processes user input
     public void runSummary() {
+        boolean keepGoing = true;
 
+        init();
+
+        while (keepGoing) {
+            displayMenu();
+        }
     }
-    
+
     // MODIFIES: this
     // EFFECTS: initalize drinkrecordsummary
     public void init() { 
@@ -29,5 +35,11 @@ public class DrinkRecordSummary {
 
     }
 
-
+    // EFFECTS: displays menu of options to use
+    private void displayMenu() {
+        System.out.println("\nSelect from:");
+        System.out.println("\ta -> Add a new drink record");
+        System.out.println("\tv -> view all drink records");
+    }
+ 
 }
