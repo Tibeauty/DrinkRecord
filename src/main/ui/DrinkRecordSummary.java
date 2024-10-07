@@ -45,6 +45,10 @@ public class DrinkRecordSummary {
             addDrinkRecord();
         } else if (command.equals("v")) {
             viewDrinkRecords();
+        } else if (command.equals("w")) {
+            waterDrinkRecord(drinkRecords);
+        } else if (command.equals("o")) {
+            othersDrinkRecord(drinkRecords);
         } else if (command.equals("f")) {
             getFeedback();
         }else {
@@ -59,16 +63,7 @@ public class DrinkRecordSummary {
             return;
         }
 
-        int waterAmount = 0;
-        int otherDrinksAmount = 0;
-        for (DrinkRecord drink : this.drinkRecords) {
-            if(drink.getType().equalsIgnoreCase("water")) {
-                waterAmount += drink.getAmount();
-            } else {
-                otherDrinksAmount += drink.getAmount();
-            }
-        }
-        if(waterAmount >= otherDrinksAmount) {
+        if(getwaterDrinkRecord(drinkRecords) >= getotherDrinkRecord(drinkRecords)) {
             System.out.println("Great! You have a healthy drinking record");
             System.out.println("Keep it up! (^v^)");
         } else {
@@ -137,10 +132,6 @@ public class DrinkRecordSummary {
             addDrinkAmount(currentDrinkRecord);
         } else if (command.equals("r")) {
             removeDrinkRecord(currentDrinkRecord);
-        } else if (command.equals("w")) {
-            waterDrinkRecord(currentDrinkRecord);
-        } else if (command.equals("o")) {
-            othersDrinkRecord(currentDrinkRecord);
         } else if (command.equals("n")) {
             getNextDrinkRecord(drinkRecords);
         } else if (command.equals("p")) {
@@ -153,19 +144,41 @@ public class DrinkRecordSummary {
     }
 
     // EFFECTS: if there is water record, display the water amount
-    public void waterDrinkRecord(DrinkRecord drinkRecord) {
+    public void waterDrinkRecord(List<DrinkRecord> drinkRecords) {
         //TODO
+    }
+
+    // EFFECTS: return the amount of water in the list
+    public int getwaterDrinkRecord(List<DrinkRecord> drinkRecords) {
+        int waterAmount = 0;
+        for (DrinkRecord drink : this.drinkRecords) {
+            if(drink.getType().equalsIgnoreCase("water")) {
+                waterAmount += drink.getAmount();
+            } 
+        }
+        return waterAmount;
+    }
+
+    // EFFECTS: return the amount of other drinks in the list
+    public int getotherDrinkRecord(List<DrinkRecord> drinkRecords) {
+        int otherDrinksAmount = 0;
+        for (DrinkRecord drink : this.drinkRecords) {
+            if(!drink.getType().equalsIgnoreCase("water")) {
+                otherDrinksAmount += drink.getAmount();
+            } 
+        }
+        return otherDrinksAmount;
     }
 
     // MODIFIES: this
     // EFFECTS: if there's other drinks other than water, display all the amount of other drinks
-    public void waterDrinkRecord(DrinkRecord drinkRecord) {
+    public void othersDrinkRecord(List<DrinkRecord> drinkRecords) {
         //TODO
     }
 
     // MODIFIES: this
     // EFFECTS: remove give drinkRecord from the list of drinkRecords
-    public void waterDrinkRecord(DrinkRecord drinkRecord) {
+    public void removeDrinkRecord(DrinkRecord drinkRecord) {
         //TODO
     }
 
@@ -208,8 +221,6 @@ public class DrinkRecordSummary {
         System.out.println("Enter 's' to show the amount of this drink");
         System.out.println("Enter 'a' to add drinking amount to this drink.");
         System.out.println("Enter 'r' to remove this drinking record");
-        System.out.println("Enter 'w' to see water's drinking summary.");
-        System.out.println("Enter 'o' to see other drinks' drinking summary");
         System.out.println("Enter 'n' to move to the next flashcard.");
         System.out.println("Enter 'p' to move to the previous flashcard.");
         System.out.println("Enter 'q' to return to the menu");
