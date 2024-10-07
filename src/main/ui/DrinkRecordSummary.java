@@ -19,14 +19,29 @@ public class DrinkRecordSummary {
     // EFFECTS: processes user input
     public void runSummary() {
         boolean keepGoing = true;
-
+        String command = null;
         init();
 
+        System.out.println("Welcome to the Water Record App!");
         while (keepGoing) {
             displayMenu();
+            command = input.next();
+            command = command.toLowerCase();
+
+            if (command.equals("q")) {
+                keepGoing = false;
+            } else {
+                processCommand(command);
+            }
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user command
+    public void processCommand(String command) {
+
+    }
+    
     // MODIFIES: this
     // EFFECTS: initalize drinkrecordsummary
     public void init() { 
@@ -39,7 +54,8 @@ public class DrinkRecordSummary {
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> Add a new drink record");
-        System.out.println("\tv -> view all drink records");
+        System.out.println("\tv -> View all drink records");
+        System.out.println("\tq -> Exit the application");
     }
  
 }
