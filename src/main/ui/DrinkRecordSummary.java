@@ -10,6 +10,17 @@ public class DrinkRecordSummary {
     private List<DrinkRecord> drinkRecords;
     private Scanner input;
 
+     // EFFECTS: runs the DrinkRecordSummary application
+    public DrinkRecordSummary() {
+        runSummary();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user input
+    public void runSummary() {
+
+    }
+    
     // MODIFIES: this
     // EFFECTS: initalize drinkrecordsummary
     public void init() { 
@@ -17,5 +28,6 @@ public class DrinkRecordSummary {
         input = new Scanner(System.in);
 
     }
+
 
 }
