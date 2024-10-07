@@ -72,7 +72,18 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: display exist list of drink records and handles inputs to related to viewing the drinkRecords
     public void displayDrinkRecords(List<DrinkRecord> drinkRecords) {
+        if (drinkRecords.isEmpty()) {
+            System.out.println("Error: No drinking record to summary. Trying adding a drinking record first!");
+            return;
+        }
 
+        displayViewMenu();
+    }
+
+    // EFFECTS: displays a list of commands that can be used in the view drink records menu
+    public void displayViewMenu()  {
+        System.out.println("Enter 's' to select one type of drink");
+        System.out.println("Enter 'f' to get a feedback for your drinking records");
     }
 
     // MODIFIES: this
