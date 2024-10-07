@@ -4,7 +4,7 @@ public class DrinkRecord {
     private String type;       //Types of beverages
     private int amount;        //Drink amount of this drinkrecord
 
-    // EFFECTS: constructs a DrinkRecord object 
+    // EFFECTS: constructs a DrinkRecord object based on its type
     public DrinkRecord(String type, int amount) {
         this.type = type;
         this.amount = amount;
