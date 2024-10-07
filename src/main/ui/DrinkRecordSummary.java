@@ -8,9 +8,13 @@ import java.util.Scanner;
 
 public class DrinkRecordSummary {
     private List<DrinkRecord> drinkRecords;
+    private Scanner input;
 
-    public DrinkRecordSummary() { 
+    // MODIFIES: this
+    // EFFECTS: initalize drinkrecordsummary
+    public void init() { 
         this.drinkRecords = new ArrayList<>();
+        input = new Scanner(System.in);
 
     }
 
