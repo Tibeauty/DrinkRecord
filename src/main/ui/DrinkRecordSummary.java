@@ -134,7 +134,13 @@ public class DrinkRecordSummary {
         if (command.equals("s")) {
             displayDrinkAmount(currentDrinkRecord);
         } else if (command.equals("a")) {
-            updateDrinkRecord(currentDrinkRecord);
+            addDrinkAmount(currentDrinkRecord);
+        } else if (command.equals("r")) {
+            removeDrinkRecord(currentDrinkRecord);
+        } else if (command.equals("w")) {
+            waterDrinkRecord(currentDrinkRecord);
+        } else if (command.equals("o")) {
+            othersDrinkRecord(currentDrinkRecord);
         } else if (command.equals("n")) {
             getNextDrinkRecord(drinkRecords);
         } else if (command.equals("p")) {
@@ -146,9 +152,26 @@ public class DrinkRecordSummary {
         }
     }
 
+    // EFFECTS: if there is water record, display the water amount
+    public void waterDrinkRecord(DrinkRecord drinkRecord) {
+        //TODO
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if there's other drinks other than water, display all the amount of other drinks
+    public void waterDrinkRecord(DrinkRecord drinkRecord) {
+        //TODO
+    }
+
+    // MODIFIES: this
+    // EFFECTS: remove give drinkRecord from the list of drinkRecords
+    public void waterDrinkRecord(DrinkRecord drinkRecord) {
+        //TODO
+    }
+
     // MODIFIES: this
     // EFFECTS: add given amount to the current drink record
-    public void updateDrinkRecord(DrinkRecord drinkRecord) {
+    public void addDrinkAmount(DrinkRecord drinkRecord) {
         System.out.println("Please enter the amount you want add for " + drinkRecord.getType());
         int additionalAmount = input.nextInt();
         drinkRecord.addAmount(additionalAmount);
@@ -184,6 +207,9 @@ public class DrinkRecordSummary {
     public void displayViewMenu()  {
         System.out.println("Enter 's' to show the amount of this drink");
         System.out.println("Enter 'a' to add drinking amount to this drink.");
+        System.out.println("Enter 'r' to remove this drinking record");
+        System.out.println("Enter 'w' to see water's drinking summary.");
+        System.out.println("Enter 'o' to see other drinks' drinking summary");
         System.out.println("Enter 'n' to move to the next flashcard.");
         System.out.println("Enter 'p' to move to the previous flashcard.");
         System.out.println("Enter 'q' to return to the menu");
