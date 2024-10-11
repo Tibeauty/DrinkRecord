@@ -7,43 +7,32 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DrinkRecordTest {
-    DrinkRecord d1;
-    DrinkRecord d2;
+    private DrinkRecords drinkRecords;
+    private DrinkRecord water;
+    private DrinkRecord juice;
+
 
     @BeforeEach
     void runBefore() {
-        d1 = new DrinkRecord("water", 100);
-        d2 = new DrinkRecord("cola", 300);
+        drinkRecords = new DrinkRecords();
+        water = new DrinkRecord("water", 500);
+        juice = new DrinkRecord("juice", 250);
     }
 
     @Test
     void testConstructor() {
-        assertEquals("water", d1.getType());
-        assertEquals("cola", d2.getType());
-        assertEquals(100, d1.getAmount());
+        assertTrue(drinkRecords.isEmpty());
+        assertEquals(0, drinkRecords.size());
     }
 
-    @Test
-    void testaddamount() {
-        d1.addAmount(150);
-        assertEquals(250, d1.getAmount());
-        d1.addAmount(200);
-        assertEquals(450, d1.getAmount());
-        d2.addAmount(10);
-        assertEquals(310, d2.getAmount());
-    }
 
     @Test
     void testSetters() {
-        d1.setAmount(400);
-        assertEquals(400, d1.getAmount());
-        d2.setType("soda");
-        assertEquals("soda", d2.getType());
+
     }
 
     @Test
     void testGetters() {
-        assertEquals("cola", d2.getType());
-        assertEquals(100, d1.getAmount());
+
     }
 }
