@@ -40,11 +40,6 @@ public class DrinkRecords {
         return otherDrinksAmount;
     }
 
-     // EFFECTS: return true if there is water record, false otherwise
-    public boolean isWater() {
-        return true;
-    }
-
 
     // EFFECTS: returns true if there are no drink records, false otherwise
     public boolean isEmpty() {
@@ -56,18 +51,21 @@ public class DrinkRecords {
         return this.drinkRecords.size();
     }
 
+    // REQUIRES: !drinkRecords.isEmpty() && index <= drinkRecords.size()
     // EFFECTS: returns the drink record at a specified index
     public DrinkRecord getRecordAtIndex(int index) {
         return this.drinkRecords.get(index);
     }
 
-    // EFFECTS: returns true if there are no drink records, false otherwise
+    // EFFECTS: returns true if there list drinkRecords contains drinkRecord
     public boolean contains(DrinkRecord drinkRecord) {
         return this.drinkRecords.contains(drinkRecord);
     }
 
+    // REQUIRES: drinkRecords.contains(drinkRecord)
+    // MODIFIES: this
     // EFFECTS: returns true if there are no drink records, false otherwise
-    public boolean remove(DrinkRecord drinkRecord) {
-        return this.drinkRecords.remove(drinkRecord);
+    public void remove(DrinkRecord drinkRecord) {
+        this.drinkRecords.remove(drinkRecord);
     }
 }
