@@ -1,15 +1,15 @@
 package ui;
 
 import model.DrinkRecord;
+import model.DrinkRecords;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class DrinkRecordSummary {
-    private List<DrinkRecord> drinkRecords;
+    private DrinkRecords drinkRecords;
     private Scanner input;
-
     private int currentRecordIndex = 0;
 
      // EFFECTS: runs the DrinkRecordSummary application
@@ -46,7 +46,7 @@ public class DrinkRecordSummary {
         } else if (command.equals("v")) {
             viewDrinkRecords();
         } else if (command.equals("w")) {
-            waterDrinkRecord(drinkRecords);
+            waterDrinkRecord();
         } else if (command.equals("o")) {
             othersDrinkRecord(drinkRecords);
         } else if (command.equals("f")) {
@@ -82,7 +82,7 @@ public class DrinkRecordSummary {
         int amount = input.nextInt();
 
         DrinkRecord drinkRecord = new DrinkRecord(type, amount);
-        this.drinkRecords.add(drinkRecord);
+        drinkRecords.addDrinkRecord(drinkRecord);
         System.out.println("\nNew drinking record successfully added!");
 
     }
@@ -95,7 +95,7 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: display exist list of drink records and handles inputs to related to viewing the drinkRecords
-    public void displayDrinkRecords(List<DrinkRecord> drinkRecords) {
+    public void displayDrinkRecords(DrinkRecords drinkRecords) {
         if (drinkRecords.isEmpty()) {
             System.out.println("Error: No drinking record to summary. Trying adding a drinking record first!");
             return;
@@ -122,7 +122,7 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: process the user's command in the view drink record menu
-    public void handleViewCommands(String command, List<DrinkRecord> drinkRecords) {
+    public void handleViewCommands(String command, DrinkRecords drinkRecords) {
         System.out.print("\n");
 
         DrinkRecord currentDrinkRecord = drinkRecords.get(currentRecordIndex);
@@ -143,32 +143,9 @@ public class DrinkRecordSummary {
         }
     }
 
-
-    // EFFECTS: return the amount of water in the list
-    public int getwaterDrinkRecord(List<DrinkRecord> drinkRecords) {
-        int waterAmount = 0;
-        for (DrinkRecord drink : drinkRecords) {
-            if (drink.getType().equalsIgnoreCase("water")) {
-                waterAmount += drink.getAmount();
-            } 
-        }
-        return waterAmount;
-    }
-
-    // EFFECTS: return the amount of other drinks (non-water) in the list
-    public int getotherDrinkRecord(List<DrinkRecord> drinkRecords) {
-        int otherDrinksAmount = 0;
-        for (DrinkRecord drink : drinkRecords) {
-            if (!drink.getType().equalsIgnoreCase("water")) {
-                otherDrinksAmount += drink.getAmount();
-            } 
-        }
-        return otherDrinksAmount;
-    }
-
     // EFFECTS: if there is water record, display the water amount
-    public void waterDrinkRecord(List<DrinkRecord> drinkRecords) {
-        if (getwaterDrinkRecord(drinkRecords) == 0) {
+    public void waterDrinkRecord(DrinkRecords drinkRecords) {
+        if (drinkRecords.getwaterDrinkRecord() == 0) {
             System.out.println("You haven't been drinking any water !!");
         } else {
             System.out.println("Great! You have been drinking " + getwaterDrinkRecord(drinkRecords) + " mL water");
@@ -177,7 +154,7 @@ public class DrinkRecordSummary {
 
 
     // EFFECTS: if there's other drinks (non-water), display all the amount of other drinks
-    public void othersDrinkRecord(List<DrinkRecord> drinkRecords) {
+    public void othersDrinkRecord(DrinkRecords drinkRecords) {
         if (getotherDrinkRecord(drinkRecords) == 0) {
             System.out.println("You haven't had anything other than water !!");
         } else {
@@ -212,7 +189,7 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: if there exists another drink record to display, increments the current drinkrecord index
-    public void getNextDrinkRecord(List<DrinkRecord> drinkRecords) {
+    public void getNextDrinkRecord(DrinkRecords drinkRecords) {
         if (this.currentRecordIndex >= drinkRecords.size() - 1) {
             System.out.println("Error: No more drinking record to display");
         } else {
@@ -222,7 +199,7 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: if there exists previous drink record to display, decrements the current drinkrecord index
-    public void getPreviousDrinkRecord(List<DrinkRecord> drinkRecords) {
+    public void getPreviousDrinkRecord(DrinkRecords drinkRecords) {
         if (this.currentRecordIndex <= 0) {
             System.out.println("Error: No more previous drinking record to display");
         } else {
@@ -243,7 +220,7 @@ public class DrinkRecordSummary {
     // MODIFIES: this
     // EFFECTS: initalize drinkrecordsummary
     public void init() { 
-        this.drinkRecords = new ArrayList<>();
+        this.drinkRecords = new DrinkRecords();
         input = new Scanner(System.in);
 
     }

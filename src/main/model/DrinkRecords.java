@@ -18,6 +18,34 @@ public class DrinkRecords {
         this.drinkRecords.add(drinkRecord);
     }
 
+    // EFFECTS: returns the total amount of water in the list
+    public int getWaterDrinkAmount() {
+        int waterAmount = 0;
+        for (DrinkRecord drink : drinkRecords) {
+            if (drink.getType().equalsIgnoreCase("water")) {
+                waterAmount += drink.getAmount();
+            }
+        }
+        return waterAmount;
+    }
+
+    // EFFECTS: returns the total amount of other drinks (non-water) in the list
+    public int getOtherDrinkAmount() {
+        int otherDrinksAmount = 0;
+        for (DrinkRecord drink : drinkRecords) {
+            if (!drink.getType().equalsIgnoreCase("water")) {
+                otherDrinksAmount += drink.getAmount();
+            }
+        }
+        return otherDrinksAmount;
+    }
+
+     // EFFECTS: return true if there is water record, false otherwise
+    public boolean isWater() {
+        
+    }
+
+
     // EFFECTS: returns true if there are no drink records, false otherwise
     public boolean isEmpty() {
         return this.drinkRecords.isEmpty();
