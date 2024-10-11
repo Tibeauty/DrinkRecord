@@ -42,7 +42,7 @@ public class DrinkRecords {
 
      // EFFECTS: return true if there is water record, false otherwise
     public boolean isWater() {
-        
+
     }
 
 
@@ -59,5 +59,15 @@ public class DrinkRecords {
     // EFFECTS: returns the drink record at a specified index
     public DrinkRecord getRecordAtIndex(int index) {
         return this.drinkRecords.get(index);
+    }
+
+    // EFFECTS: returns true if there are no drink records, false otherwise
+    public boolean contains(DrinkRecord drinkRecord) {
+        return this.drinkRecords.contains(drinkRecord);
+    }
+
+    // EFFECTS: returns true if there are no drink records, false otherwise
+    public boolean remove(DrinkRecord drinkRecord) {
+        return this.drinkRecords.remove(drinkRecord);
     }
 }

@@ -44,7 +44,7 @@ public class DrinkRecordSummary {
         if (command.equals("a")) {
             addDrinkRecord();
         } else if (command.equals("v")) {
-            viewDrinkRecords();
+            displayDrinkRecords();
         } else if (command.equals("w")) {
             waterDrinkRecord();
         } else if (command.equals("o")) {
@@ -87,15 +87,10 @@ public class DrinkRecordSummary {
 
     }
 
-    // MODIFIES: this
-    // EFFECTS: view all drinkRecords
-    public void viewDrinkRecords() {
-        displayDrinkRecords(this.drinkRecords);
-    }
 
     // MODIFIES: this
     // EFFECTS: display exist list of drink records and handles inputs to related to viewing the drinkRecords
-    public void displayDrinkRecords(DrinkRecords drinkRecords) {
+    public void displayDrinkRecords() {
         if (drinkRecords.isEmpty()) {
             System.out.println("Error: No drinking record to summary. Trying adding a drinking record first!");
             return;
@@ -104,10 +99,10 @@ public class DrinkRecordSummary {
         displayViewMenu();
         String command = "";
         while (!command.equals("q")) {
-            DrinkRecord currentDrinkRecord = drinkRecords.get(this.currentRecordIndex);
+            DrinkRecord currentDrinkRecord = drinkRecords.getRecordAtIndex(this.currentRecordIndex);
             displayDrinkRecord(currentDrinkRecord);
             command = input.nextLine();
-            handleViewCommands(command, drinkRecords);
+            handleViewCommands(command);
         }
         this.currentRecordIndex = 0;
         
@@ -122,10 +117,10 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: process the user's command in the view drink record menu
-    public void handleViewCommands(String command, DrinkRecords drinkRecords) {
+    public void handleViewCommands(String command) {
         System.out.print("\n");
 
-        DrinkRecord currentDrinkRecord = drinkRecords.get(currentRecordIndex);
+        DrinkRecord currentDrinkRecord = drinkRecords.getRecordAtIndex(currentRecordIndex);
         if (command.equals("s")) {
             displayDrinkAmount(currentDrinkRecord);
         } else if (command.equals("a")) {
