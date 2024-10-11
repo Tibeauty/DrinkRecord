@@ -9,6 +9,6 @@ I am developing an application that will allow users to track their daily water 
 
 - As a user, I want to be able to add a new drinking record to my drinking record summary
 - As a user, I want to be able to view the list of drinking record in my drinking record summary
-- As a user, I want to be able to select same kind of drink and view the drinking amount in detail
+- As a user, I want to be able to select water/non-water drinks and view the drinking amount in detail
 - As a user, I want to be able to remove a drinking record from my drinking record summary
 - As a user, I want to be able to get *positive/negative* feedback for my drinking record summary
