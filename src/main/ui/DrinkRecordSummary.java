@@ -51,7 +51,7 @@ public class DrinkRecordSummary {
             othersDrinkRecord(drinkRecords);
         } else if (command.equals("f")) {
             getFeedback();
-        }else {
+        } else {
             System.out.println("Selection not valid...");
         }
     }
@@ -63,7 +63,7 @@ public class DrinkRecordSummary {
             return;
         }
 
-        if(getwaterDrinkRecord(drinkRecords) >= getotherDrinkRecord(drinkRecords)) {
+        if (getwaterDrinkRecord(drinkRecords) >= getotherDrinkRecord(drinkRecords)) {
             System.out.println("Great! You have a healthy drinking record");
             System.out.println("Keep it up! (^v^)");
         } else {
@@ -148,7 +148,7 @@ public class DrinkRecordSummary {
     public int getwaterDrinkRecord(List<DrinkRecord> drinkRecords) {
         int waterAmount = 0;
         for (DrinkRecord drink : drinkRecords) {
-            if(drink.getType().equalsIgnoreCase("water")) {
+            if (drink.getType().equalsIgnoreCase("water")) {
                 waterAmount += drink.getAmount();
             } 
         }
@@ -159,7 +159,7 @@ public class DrinkRecordSummary {
     public int getotherDrinkRecord(List<DrinkRecord> drinkRecords) {
         int otherDrinksAmount = 0;
         for (DrinkRecord drink : drinkRecords) {
-            if(!drink.getType().equalsIgnoreCase("water")) {
+            if (!drink.getType().equalsIgnoreCase("water")) {
                 otherDrinksAmount += drink.getAmount();
             } 
         }
