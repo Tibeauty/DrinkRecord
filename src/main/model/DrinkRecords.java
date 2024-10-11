@@ -42,7 +42,7 @@ public class DrinkRecords {
 
      // EFFECTS: return true if there is water record, false otherwise
     public boolean isWater() {
-
+        return true;
     }
 
 

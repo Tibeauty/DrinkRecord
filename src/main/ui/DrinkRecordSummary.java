@@ -3,8 +3,6 @@ package ui;
 import model.DrinkRecord;
 import model.DrinkRecords;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class DrinkRecordSummary {
@@ -48,7 +46,7 @@ public class DrinkRecordSummary {
         } else if (command.equals("w")) {
             waterDrinkRecord();
         } else if (command.equals("o")) {
-            othersDrinkRecord(drinkRecords);
+            othersDrinkRecord();
         } else if (command.equals("f")) {
             getFeedback();
         } else {
@@ -63,7 +61,7 @@ public class DrinkRecordSummary {
             return;
         }
 
-        if (getwaterDrinkRecord(drinkRecords) >= getotherDrinkRecord(drinkRecords)) {
+        if (drinkRecords.getWaterDrinkAmount() >= drinkRecords.getOtherDrinkAmount()) {
             System.out.println("Great! You have a healthy drinking record");
             System.out.println("Keep it up! (^v^)");
         } else {
@@ -128,9 +126,9 @@ public class DrinkRecordSummary {
         } else if (command.equals("r")) {
             removeDrinkRecord(currentDrinkRecord);
         } else if (command.equals("n")) {
-            getNextDrinkRecord(drinkRecords);
+            getNextDrinkRecord();
         } else if (command.equals("p")) {
-            getPreviousDrinkRecord(drinkRecords);
+            getPreviousDrinkRecord();
         } else if (command.equals("q")) {
             System.out.println("Returning to the menu...");
         } else {
@@ -139,29 +137,29 @@ public class DrinkRecordSummary {
     }
 
     // EFFECTS: if there is water record, display the water amount
-    public void waterDrinkRecord(DrinkRecords drinkRecords) {
-        if (drinkRecords.getwaterDrinkRecord() == 0) {
+    public void waterDrinkRecord() {
+        if (drinkRecords.getWaterDrinkAmount() == 0) {
             System.out.println("You haven't been drinking any water !!");
         } else {
-            System.out.println("Great! You have been drinking " + getwaterDrinkRecord(drinkRecords) + " mL water");
+            System.out.println("Great! You have been drinking " + drinkRecords.getWaterDrinkAmount() + " mL water");
         }
     }
 
 
     // EFFECTS: if there's other drinks (non-water), display all the amount of other drinks
-    public void othersDrinkRecord(DrinkRecords drinkRecords) {
-        if (getotherDrinkRecord(drinkRecords) == 0) {
+    public void othersDrinkRecord() {
+        if (drinkRecords.getOtherDrinkAmount() == 0) {
             System.out.println("You haven't had anything other than water !!");
         } else {
-            System.out.println("You have been drinking " + getwaterDrinkRecord(drinkRecords) + " mL other drinks");
+            System.out.println("You have been drinking " + drinkRecords.getOtherDrinkAmount() + " mL other drinks");
         }
     }
 
     // MODIFIES: this
     // EFFECTS: remove give drinkRecord from the list of drinkRecords
     public void removeDrinkRecord(DrinkRecord drinkRecord) {
-        if (this.drinkRecords.contains(drinkRecord)) {
-            this.drinkRecords.remove(drinkRecord);
+        if (drinkRecords.contains(drinkRecord)) {
+            drinkRecords.remove(drinkRecord);
             System.out.println("The drinking record has been successfully removed.");
         } else {
             System.out.println("The drinking record was not found.");
@@ -184,7 +182,7 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: if there exists another drink record to display, increments the current drinkrecord index
-    public void getNextDrinkRecord(DrinkRecords drinkRecords) {
+    public void getNextDrinkRecord() {
         if (this.currentRecordIndex >= drinkRecords.size() - 1) {
             System.out.println("Error: No more drinking record to display");
         } else {
@@ -194,7 +192,7 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: if there exists previous drink record to display, decrements the current drinkrecord index
-    public void getPreviousDrinkRecord(DrinkRecords drinkRecords) {
+    public void getPreviousDrinkRecord() {
         if (this.currentRecordIndex <= 0) {
             System.out.println("Error: No more previous drinking record to display");
         } else {
