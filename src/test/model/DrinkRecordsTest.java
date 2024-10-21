@@ -100,4 +100,12 @@ public class DrinkRecordsTest {
         assertFalse(drinkRecords.contains(water));
         assertEquals(1, drinkRecords.size());
     }
+
+    @Test
+    void testGet() {
+        drinkRecords.addDrinkRecord(water);
+        drinkRecords.addDrinkRecord(juice);
+        assertEquals(drinkRecords.get(0), water);
+        assertEquals(drinkRecords.get(1), juice);
+    }
 }

@@ -71,4 +71,8 @@ public class DrinkRecords {
     public void remove(DrinkRecord drinkRecord) {
         this.drinkRecords.remove(drinkRecord);
     }
+
+    public DrinkRecord get(int index) {
+        return this.drinkRecords.get(index);
+    }
 }
