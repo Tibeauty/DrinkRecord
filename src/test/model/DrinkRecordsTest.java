@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -107,5 +109,17 @@ public class DrinkRecordsTest {
         drinkRecords.addDrinkRecord(juice);
         assertEquals(drinkRecords.get(0), water);
         assertEquals(drinkRecords.get(1), juice);
+    }
+
+
+    @Test
+    void testDrinkRecordsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(water.toJson());
+        jsonArray.put(juice.toJson());
+
+        drinkRecords.addDrinkRecord(water);
+        drinkRecords.addDrinkRecord(juice);
+        assertEquals(drinkRecords.drinkRecordsToJson(), jsonArray);
     }
 }

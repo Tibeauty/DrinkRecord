@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,5 +45,13 @@ public class DrinkRecordTest {
     void testGetters() {
         assertEquals("cola", d2.getType());
         assertEquals(100, d1.getAmount());
+    }
+
+    @Test
+    void testToJson() {
+        JSONObject testJson = new JSONObject();
+        testJson.put("type", "water");
+        testJson.put("amount", 100);
+        assertEquals(testJson, d1.toJson());
     }
 }
