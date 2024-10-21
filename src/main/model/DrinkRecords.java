@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// The DrinkRecords class contains a collection of DrinkRecord objects, 
+// which indivial drinkrecord is add to the drinkrecords
 public class DrinkRecords {
     private List<DrinkRecord> drinkRecords;
 

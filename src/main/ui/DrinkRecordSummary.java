@@ -5,6 +5,8 @@ import model.DrinkRecords;
 
 import java.util.Scanner;
 
+// The DrinkRecordSummary class provides the summary of drinkrecords and interact with
+// user input.
 public class DrinkRecordSummary {
     private DrinkRecords drinkRecords;
     private Scanner input;
@@ -96,7 +98,7 @@ public class DrinkRecordSummary {
 
         displayViewMenu();
         String command = "";
-        while (!command.equals("q")) {
+        while (!command.equals("q") && drinkRecords.size() > 0) {
             DrinkRecord currentDrinkRecord = drinkRecords.getRecordAtIndex(this.currentRecordIndex);
             displayDrinkRecord(currentDrinkRecord);
             command = input.nextLine();
@@ -160,6 +162,7 @@ public class DrinkRecordSummary {
     public void removeDrinkRecord(DrinkRecord drinkRecord) {
         if (drinkRecords.contains(drinkRecord)) {
             drinkRecords.remove(drinkRecord);
+            currentRecordIndex -= 1;
             System.out.println("The drinking record has been successfully removed.");
         } else {
             System.out.println("The drinking record was not found.");
@@ -223,6 +226,8 @@ public class DrinkRecordSummary {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> Add a new drink record");
         System.out.println("\tv -> View all drink records");
+        System.out.println("\tw -> View total amount of water drink record");
+        System.out.println("\to -> View total amout of other drink records");
         System.out.println("\tf -> Get a feedback for your drinking records");
         System.out.println("\tq -> Exit the application");
     }
