@@ -2,7 +2,11 @@ package ui;
 
 import model.DrinkRecord;
 import model.DrinkRecords;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // The DrinkRecordSummary class provides the summary of drinkrecords and interact with
@@ -11,6 +15,9 @@ public class DrinkRecordSummary {
     private DrinkRecords drinkRecords;
     private Scanner input;
     private int currentRecordIndex = 0;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/myDrinkRecord.json";
 
      // EFFECTS: runs the DrinkRecordSummary application
     public DrinkRecordSummary() {
@@ -49,6 +56,10 @@ public class DrinkRecordSummary {
             waterDrinkRecord();
         } else if (command.equals("o")) {
             othersDrinkRecord();
+        } else if (command.equals("s")) {
+            saveDrinkRecords();
+        } else if (command.equals("l")) {
+            loadDrinkRecords();
         } else if (command.equals("f")) {
             getFeedback();
         } else {
@@ -217,6 +228,8 @@ public class DrinkRecordSummary {
     // EFFECTS: initalize drinkrecordsummary
     public void init() { 
         this.drinkRecords = new DrinkRecords();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         input = new Scanner(System.in);
 
     }
@@ -228,8 +241,33 @@ public class DrinkRecordSummary {
         System.out.println("\tv -> View all drink records");
         System.out.println("\tw -> View total amount of water drink record");
         System.out.println("\to -> View total amout of other drink records");
+        System.out.println("\ts -> Save drink records room to file");
+        System.out.println("\tl -> Load drink records room from file");
         System.out.println("\tf -> Get a feedback for your drinking records");
         System.out.println("\tq -> Exit the application");
+    }
+
+     // EFFECTS: saves the drink records to file
+    private void saveDrinkRecords() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(drinkRecords);
+            jsonWriter.close();
+            System.out.println("Saved my drinking records to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads drink records from file
+    private void loadDrinkRecords() {
+        try {
+            drinkRecords = jsonReader.read();
+            System.out.println("Loaded my drinking record from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
  
 }

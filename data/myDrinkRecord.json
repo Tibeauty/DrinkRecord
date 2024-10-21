@@ -1,0 +1,10 @@
+[
+    {
+        "amount": 250,
+        "type": "water"
+    },
+    {
+        "amount": 500,
+        "type": "milktea"
+    }
+]
