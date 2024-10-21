@@ -52,6 +52,6 @@ public class DrinkRecordTest {
         JSONObject testJson = new JSONObject();
         testJson.put("type", "water");
         testJson.put("amount", 100);
-        assertEquals(testJson, d1.toJson());
+        assertEquals(testJson.toString(), d1.toJson().toString());
     }
 }

@@ -120,6 +120,6 @@ public class DrinkRecordsTest {
 
         drinkRecords.addDrinkRecord(water);
         drinkRecords.addDrinkRecord(juice);
-        assertEquals(drinkRecords.drinkRecordsToJson(), jsonArray);
+        assertEquals(drinkRecords.drinkRecordsToJson().toString(), jsonArray.toString());
     }
 }
