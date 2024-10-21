@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import persistence.Writable;
 
 // The DrinkRecords class contains a collection of DrinkRecord objects, 
 // which indivial drinkrecord is add to the drinkrecords
@@ -79,13 +79,15 @@ public class DrinkRecords {
         return this.drinkRecords.get(index);
     }
 
-    @Override
-    public JSONObject toJson() {
-
-    }
 
     // EFFECTS: returns things in this DrinkRecords as a JSON array
-    private JSONArray drinkRecordsToJson() {
+    public JSONArray drinkRecordsToJson() {
+        JSONArray jsonArray = new JSONArray();
 
+        for (DrinkRecord drinkRecord : drinkRecords) {
+            jsonArray.put(drinkRecord.toJson());
+        }
+
+        return jsonArray;
     }
 }
