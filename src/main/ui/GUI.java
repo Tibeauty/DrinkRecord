@@ -4,13 +4,18 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import model.DrinkRecord;
+import model.DrinkRecords;
 
 //the graphical user interface for drinking records
 public class GUI implements ActionListener {
@@ -31,6 +36,7 @@ public class GUI implements ActionListener {
         panel.add(button);
         panel.add(label);
 
+
         button.addActionListener(this);
 
         frame.add(panel, BorderLayout.CENTER);
@@ -42,7 +48,26 @@ public class GUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        count++;
-        label.setText("Number of drinking records:" + count);
+        //count++;
+        //label.setText("Number of drinking records:" + count);
+        JTextField typeField = new JTextField();
+        JTextField amountField = new JTextField();
+        Object[] message = {
+            "Type of drink:", typeField,
+            "Amount (ml):", amountField
+        };
+
+        int option = JOptionPane.showConfirmDialog(
+                frame, 
+                message, 
+                "Enter Drinking Record", 
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (option == JOptionPane.OK_CANCEL_OPTION) {
+            String type = typeField.getText();
+            String amountText = amountField.getText();
+            int amount = Integer.parseInt(amountText);
+        }
     }
 }
