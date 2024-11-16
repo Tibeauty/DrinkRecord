@@ -52,4 +52,9 @@ public class DrinkRecord implements Writable {
         json.put("amount", amount);
         return json;
     }
+
+    @Override
+    public String toString() {
+        return type + ", " + amount;
+    }
 }
