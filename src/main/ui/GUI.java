@@ -4,25 +4,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 import model.DrinkRecord;
 import model.DrinkRecords;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 //the graphical user interface for drinking records
 public class GUI implements ActionListener {
-    private int count = 0;
     private JLabel label;
     private JFrame frame;
     private JButton addButton;
     private JButton saveButton;
     private JPanel panel;
-    private DrinkRecords drinkRecords;
     private DefaultListModel<DrinkRecord> myList;
     private JList<DrinkRecord> list;
     private JScrollPane listScrollPane;
+    private DrinkRecords drinkRecords;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/myDrinkRecord.json";
     
     public GUI() {
-        init();
+        initGUI();
 
         // Add the list and label to the top of the panel
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -45,8 +50,11 @@ public class GUI implements ActionListener {
 
     // MODIFIES: this
     // EFFECTS: initalize GUI and drinkRecords
-    public void init() {
+    public void initGUI() {
         drinkRecords = new DrinkRecords();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
         frame = new JFrame();
 
         label = new JLabel("Add new drinking record to begin");
@@ -68,8 +76,30 @@ public class GUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //count++;
-        //label.setText("Number of drinking records:" + count);
+        if (e.getSource() == addButton) {
+            passAddButton();
+        } else if (e.getSource() == saveButton) {
+            passSaveButton();
+        }
+
+       
+    }
+
+    // EFFECTS: generate next step when user clicking add button
+    public void passSaveButton() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(drinkRecords);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(frame, "Successfully saved my drinking records to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+        
+    }
+
+    // EFFECTS: generate next step when user clicking add button
+    public void passAddButton() {
         JTextField typeField = new JTextField();
         JTextField amountField = new JTextField();
         Object[] message = {

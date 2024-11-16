@@ -248,7 +248,7 @@ public class DrinkRecordSummary {
     }
 
      // EFFECTS: saves the drink records to file
-    private void saveDrinkRecords() {
+    protected void saveDrinkRecords() {
         try {
             jsonWriter.open();
             jsonWriter.write(drinkRecords);
@@ -261,7 +261,7 @@ public class DrinkRecordSummary {
 
     // MODIFIES: this
     // EFFECTS: loads drink records from file
-    private void loadDrinkRecords() {
+    protected void loadDrinkRecords() {
         try {
             drinkRecords = jsonReader.read();
             System.out.println("Loaded my drinking record from " + JSON_STORE);

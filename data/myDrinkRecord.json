@@ -1,10 +1,14 @@
 [
     {
-        "amount": 250,
+        "amount": 100,
+        "type": "cola"
+    },
+    {
+        "amount": 200,
         "type": "water"
     },
     {
-        "amount": 500,
-        "type": "milktea"
+        "amount": 200,
+        "type": "orange juice"
     }
 ]
