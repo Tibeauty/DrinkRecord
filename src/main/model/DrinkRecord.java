@@ -55,6 +55,6 @@ public class DrinkRecord implements Writable {
 
     @Override
     public String toString() {
-        return type + ", " + amount;
+        return "You drink " + amount + "(mL) of " + type + ".";
     }
 }
