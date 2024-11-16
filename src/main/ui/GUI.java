@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import model.DrinkRecord;
 import model.DrinkRecords;
@@ -16,6 +17,8 @@ public class GUI implements ActionListener {
     private JLabel label;
     private JFrame frame;
     private JButton addButton;
+    private JButton loadButton;
+    private JButton feedbackButton;
     private JButton saveButton;
     private JPanel panel;
     private DefaultListModel<DrinkRecord> myList;
@@ -36,8 +39,10 @@ public class GUI implements ActionListener {
         panel.add(topPanel, BorderLayout.CENTER);
 
         // Add the buttons to the bottom of the panel
-        JPanel bottomPanel = new JPanel(new GridLayout(1, 2, 10, 10));
+        JPanel bottomPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         bottomPanel.add(addButton);
+        bottomPanel.add(feedbackButton);
+        bottomPanel.add(loadButton);
         bottomPanel.add(saveButton);
         panel.add(bottomPanel, BorderLayout.SOUTH);
 
@@ -65,11 +70,15 @@ public class GUI implements ActionListener {
         listScrollPane = new JScrollPane(list);
 
         // Create the buttons
+        feedbackButton = new JButton("Get Feedback for your records");
+        loadButton = new JButton("Load drinking Records from file");
         addButton = new JButton("Add new drinking Records");
         saveButton = new JButton("Save your drinking Records");
 
         addButton.addActionListener(this);
         saveButton.addActionListener(this);
+        feedbackButton.addActionListener(this);
+        loadButton.addActionListener(this);
 
         panel = new JPanel(new BorderLayout());
     }
@@ -80,12 +89,28 @@ public class GUI implements ActionListener {
             passAddButton();
         } else if (e.getSource() == saveButton) {
             passSaveButton();
+        } else if (e.getSource() == loadButton) {
+            passLoadButton();
         }
 
        
     }
 
-    // EFFECTS: generate next step when user clicking add button
+    // EFFECTS: generate next step when user clicking save button
+    public void passLoadButton() {
+        try {
+            drinkRecords = jsonReader.read();
+            for (DrinkRecord drinkRecord : drinkRecords) {
+
+            }
+            JOptionPane.showMessageDialog(frame, "Successfully load my drinking records from" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+        
+    }
+
+    // EFFECTS: generate next step when user clicking save button
     public void passSaveButton() {
         try {
             jsonWriter.open();
