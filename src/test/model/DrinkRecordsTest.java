@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
@@ -104,11 +107,14 @@ public class DrinkRecordsTest {
     }
 
     @Test
-    void testGet() {
+    void testGetDrinkRecords() {
         drinkRecords.addDrinkRecord(water);
         drinkRecords.addDrinkRecord(juice);
-        assertEquals(drinkRecords.get(0), water);
-        assertEquals(drinkRecords.get(1), juice);
+        List<DrinkRecord> testRecords = new ArrayList<>();
+        testRecords.add(water);
+        testRecords.add(juice);
+        assertEquals(drinkRecords.getDrinkRecords(), testRecords);
+        assertEquals(drinkRecords.getDrinkRecords(), testRecords);
     }
 
 

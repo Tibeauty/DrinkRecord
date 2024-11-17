@@ -44,10 +44,10 @@ public class JsonReaderTest {
         JsonReader reader = new JsonReader("./data/testReaderGeneralDrinkRecords.json");
         try {
             DrinkRecords drinkRecords = reader.read();
-            assertEquals(200, drinkRecords.get(1).getAmount());
-            assertEquals("cola", drinkRecords.get(1).getType());
-            assertEquals(100, drinkRecords.get(0).getAmount());
-            assertEquals("water", drinkRecords.get(0).getType());
+            assertEquals(200, drinkRecords.getRecordAtIndex(1).getAmount());
+            assertEquals("cola", drinkRecords.getRecordAtIndex(1).getType());
+            assertEquals(100, drinkRecords.getRecordAtIndex(0).getAmount());
+            assertEquals("water", drinkRecords.getRecordAtIndex(0).getType());
             assertEquals(3, drinkRecords.size());
 
         } catch (IOException e) {

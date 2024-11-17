@@ -75,8 +75,9 @@ public class DrinkRecords {
         this.drinkRecords.remove(drinkRecord);
     }
 
-    public DrinkRecord get(int index) {
-        return this.drinkRecords.get(index);
+    //  EFFECTS: returns the drinkrecords list
+    public List<DrinkRecord> getDrinkRecords() {
+        return this.drinkRecords;
     }
 
 

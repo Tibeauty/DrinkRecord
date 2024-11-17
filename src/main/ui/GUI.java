@@ -6,11 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import model.DrinkRecord;
 import model.DrinkRecords;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 
 //the graphical user interface for drinking records
 public class GUI implements ActionListener {
@@ -96,18 +100,20 @@ public class GUI implements ActionListener {
        
     }
 
+    // MODIFIES: this
     // EFFECTS: generate next step when user clicking save button
     public void passLoadButton() {
         try {
             drinkRecords = jsonReader.read();
-            for (DrinkRecord drinkRecord : drinkRecords) {
-
+            List<DrinkRecord> recordsCopy = new ArrayList<>(drinkRecords.getDrinkRecords());
+            for (DrinkRecord drinkRecord : recordsCopy) {
+                addNewDrinkRecord(drinkRecord.getType(), drinkRecord.getAmount());
             }
-            JOptionPane.showMessageDialog(frame, "Successfully load my drinking records from" + JSON_STORE);
+            
+            JOptionPane.showMessageDialog(frame, "Successfully loaded my drinking records from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
-        
     }
 
     // EFFECTS: generate next step when user clicking save button
@@ -146,19 +152,18 @@ public class GUI implements ActionListener {
         );
 
         if (option == JOptionPane.OK_OPTION) {
-            addNewDrinkRecord(typeField, amountField);
+            String type = typeField.getText();
+            String amountText = amountField.getText();
+            int amount = Integer.parseInt(amountText);
+            addNewDrinkRecord(type, amount);
         }
     }
 
+    // MODIFIES: this
     // EFFECT: add new drink records to JList and drinkRecords
-    public void addNewDrinkRecord(JTextField typeField, JTextField amountField) {
-        String type = typeField.getText();
-        String amountText = amountField.getText();
-        int amount = Integer.parseInt(amountText);
-
+    public void addNewDrinkRecord(String type, int amount) {
         DrinkRecord newDrinkRecord = new DrinkRecord(type, amount);
         drinkRecords.addDrinkRecord(newDrinkRecord);
-
         myList.addElement(newDrinkRecord);
     }
 }
