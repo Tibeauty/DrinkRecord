@@ -2,10 +2,10 @@ package model;
 
 import org.json.JSONObject;
 import persistence.Writable;
+
 // The DrinkRecord class represents a record of a beverage consumption event.
 // Each record contains information about the type of beverage consumed and 
 // the amount of the beverage. 
-
 public class DrinkRecord implements Writable {
     private String type;       //Types of beverages
     private int amount;        //Drink amount of this drinkrecord

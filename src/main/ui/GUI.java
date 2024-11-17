@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//the graphical user interface for drinking records
+//The GUI class represents the graphical user interface for drinking records;
+// Users can interact with the interface
 public class GUI implements ActionListener {
     private JLabel label;
     private JFrame frame;
@@ -95,9 +96,16 @@ public class GUI implements ActionListener {
             passSaveButton();
         } else if (e.getSource() == loadButton) {
             passLoadButton();
+        } else if (e.getSource() == feedbackButton) {
+            passFeedbackButton();
         }
 
        
+    }
+
+    // EFFECTS: generate next step when user clicking getfeedback button
+    public void passFeedbackButton() {
+        // TODO
     }
 
     // MODIFIES: this
@@ -129,6 +137,7 @@ public class GUI implements ActionListener {
         
     }
 
+    // MODIFIES: this
     // EFFECTS: generate next step when user clicking add button
     public void passAddButton() {
         JTextField typeField = new JTextField();
