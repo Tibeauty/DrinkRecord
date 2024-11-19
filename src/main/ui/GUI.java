@@ -25,6 +25,7 @@ public class GUI implements ActionListener {
     private JButton loadButton;
     private JButton feedbackButton;
     private JButton saveButton;
+    private JButton removeButton;
     private JPanel panel;
     private DefaultListModel<DrinkRecord> myList;
     private JList<DrinkRecord> list;
@@ -46,6 +47,7 @@ public class GUI implements ActionListener {
         // Add the buttons to the bottom of the panel
         JPanel bottomPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         bottomPanel.add(addButton);
+        bottomPanel.add(removeButton);
         bottomPanel.add(feedbackButton);
         bottomPanel.add(loadButton);
         bottomPanel.add(saveButton);
@@ -80,11 +82,13 @@ public class GUI implements ActionListener {
         loadButton = new JButton("Load drinking Records from file");
         addButton = new JButton("Add new drinking Records");
         saveButton = new JButton("Save your drinking Records");
+        removeButton = new JButton("Remove selected drink record");
 
         addButton.addActionListener(this);
         saveButton.addActionListener(this);
         feedbackButton.addActionListener(this);
         loadButton.addActionListener(this);
+        removeButton.addActionListener(this);
 
         panel = new JPanel(new BorderLayout());
     }
@@ -99,9 +103,14 @@ public class GUI implements ActionListener {
             passLoadButton();
         } else if (e.getSource() == feedbackButton) {
             passFeedbackButton();
+        } else if (e.getSource() == removeButton) {
+            passRemoveButton();
         }
-
        
+    }
+
+    public void passRemoveButton() {
+        //TODO
     }
 
     // EFFECTS: generate next step when user clicking getfeedback button
