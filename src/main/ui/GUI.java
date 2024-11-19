@@ -68,6 +68,7 @@ public class GUI implements ActionListener {
         frame = new JFrame();
 
         label = new JLabel("Add new drinking record to begin");
+ 
 
         myList = new DefaultListModel<>();
         list = new JList<>(myList);
@@ -105,7 +106,31 @@ public class GUI implements ActionListener {
 
     // EFFECTS: generate next step when user clicking getfeedback button
     public void passFeedbackButton() {
-        // TODO
+        JDialog feedbackDialog = new JDialog(frame, "Feedback", true);
+        feedbackDialog.setSize(300, 300);
+        feedbackDialog.setLayout(new BorderLayout());
+
+        JLabel feedbackLabel = new JLabel();
+        feedbackLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        feedbackLabel.setVerticalAlignment(SwingConstants.CENTER);
+
+        if (getFeedback()) {
+            feedbackLabel.setText("Great! You have a healthy drinking record");
+            feedbackLabel.setIcon(new ImageIcon(new ImageIcon("images/happy_face.png")
+                    .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
+        } else {
+            feedbackLabel.setText("Try to drink more water! (*X*)");
+            feedbackLabel.setIcon(new ImageIcon(new ImageIcon("images/sad_face.png")
+                    .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
+        }
+
+        feedbackLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+        feedbackLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
+
+        feedbackDialog.add(feedbackLabel, BorderLayout.CENTER);
+
+        feedbackDialog.setLocationRelativeTo(frame);
+        feedbackDialog.setVisible(true);
     }
 
     // MODIFIES: this
@@ -133,8 +158,7 @@ public class GUI implements ActionListener {
             JOptionPane.showMessageDialog(frame, "Successfully saved my drinking records to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
-        }
-        
+        }   
     }
 
     // MODIFIES: this
@@ -174,5 +198,17 @@ public class GUI implements ActionListener {
         DrinkRecord newDrinkRecord = new DrinkRecord(type, amount);
         drinkRecords.addDrinkRecord(newDrinkRecord);
         myList.addElement(newDrinkRecord);
+    }
+
+    // EFFECTS: give positive/negative feedback based on the amount of water and other drinks
+    public boolean getFeedback() {
+        if (drinkRecords.isEmpty()) {
+            return false;
+        }
+        if (drinkRecords.getWaterDrinkAmount() >= drinkRecords.getOtherDrinkAmount()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,14 +1,10 @@
 [
     {
-        "amount": 100,
-        "type": "cola"
-    },
-    {
         "amount": 200,
         "type": "water"
     },
     {
-        "amount": 200,
-        "type": "orange juice"
+        "amount": 100,
+        "type": "cola"
     }
 ]
