@@ -12,5 +12,5 @@ I am developing an application that will allow users to track their daily water 
 - As a user, I want to be able to select water/non-water drinks and view the drinking amount in detail
 - As a user, I want to be able to remove a drinking record from my drinking records
 - As a user, I want to be able to get *positive/negative* feedback for my drinking records
-- As a user, I want to be able to save my drinb records to file (if I so choose)
+- As a user, I want to be able to save my drink records to file (if I so choose)
 - As a user, I want to be able to be able to load my drink records from file (if I so choose)

@@ -109,9 +109,50 @@ public class GUI implements ActionListener {
        
     }
 
+    // EFFECTS: generate next step when user clicking remove button
     public void passRemoveButton() {
-        //TODO
+        int selectedIndex = list.getSelectedIndex(); 
+        if (selectedIndex == -1) {
+            JOptionPane.showMessageDialog(frame, "Please select a record to remove!");
+            return;
+        }
+
+        DrinkRecord selectedRecord = myList.get(selectedIndex);
+
+        // change the format of the text COLOR show on the optionPane
+        String formattedRecord = String.format(
+                    "<html>Are you sure you want to remove this record?<br><br><b style='color:blue;'>%s</b></html>",
+                selectedRecord.toString()
+        );
+
+        // New dialog of remove
+        int confirmation = JOptionPane.showConfirmDialog(
+                frame,
+                formattedRecord,
+                "Confirm Removal",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmation == JOptionPane.YES_OPTION) {
+            // Remove from both the JList and drinkRecords
+            myList.remove(selectedIndex);
+            drinkRecords.remove(selectedRecord);
+
+            JOptionPane.showMessageDialog(frame, "Selected drink record removed successfully!");
+        }
     }
+
+    // // MODIFIES: this
+    // // EFFECTS: remove give drinkRecord from the list of drinkRecords
+    // public void removeDrinkRecord(DrinkRecord drinkRecord) {
+    //     if (drinkRecords.contains(drinkRecord)) {
+    //         drinkRecords.remove(drinkRecord);
+    //         currentRecordIndex -= 1;
+    //         System.out.println("The drinking record has been successfully removed.");
+    //     } else {
+    //         System.out.println("The drinking record was not found.");
+    //     }
+    // }
 
     // EFFECTS: generate next step when user clicking getfeedback button
     public void passFeedbackButton() {
