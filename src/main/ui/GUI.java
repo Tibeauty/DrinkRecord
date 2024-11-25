@@ -10,10 +10,14 @@ import java.util.ArrayList;
 
 import model.DrinkRecord;
 import model.DrinkRecords;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import model.Event;
+import model.EventLog;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 //The GUI class represents the graphical user interface for drinking records;
@@ -38,6 +42,8 @@ public class GUI implements ActionListener {
     public GUI() {
         initGUI();
 
+        exitShowLog();
+
         // Add the list and label to the top of the panel
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(label, BorderLayout.NORTH);
@@ -60,6 +66,19 @@ public class GUI implements ActionListener {
         frame.setVisible(true);
     }
 
+    // EFFECTS: when user quits the application, 
+    // print to the console all the events 
+    // that have been logged since the application started 
+    public void exitShowLog() {
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                printLog();
+                System.exit(0);
+            }
+        });
+    }
+
     // MODIFIES: this
     // EFFECTS: initalize GUI and drinkRecords
     public void initGUI() {
@@ -74,7 +93,6 @@ public class GUI implements ActionListener {
 
         myList = new DefaultListModel<>();
         list = new JList<>(myList);
-        //myList.addElement(new DrinkRecord("Fish", 100));
         listScrollPane = new JScrollPane(list);
 
         // Create the buttons
@@ -142,17 +160,6 @@ public class GUI implements ActionListener {
         }
     }
 
-    // // MODIFIES: this
-    // // EFFECTS: remove give drinkRecord from the list of drinkRecords
-    // public void removeDrinkRecord(DrinkRecord drinkRecord) {
-    //     if (drinkRecords.contains(drinkRecord)) {
-    //         drinkRecords.remove(drinkRecord);
-    //         currentRecordIndex -= 1;
-    //         System.out.println("The drinking record has been successfully removed.");
-    //     } else {
-    //         System.out.println("The drinking record was not found.");
-    //     }
-    // }
 
     // EFFECTS: generate next step when user clicking getfeedback button
     public void passFeedbackButton() {
@@ -164,7 +171,7 @@ public class GUI implements ActionListener {
         feedbackLabel.setHorizontalAlignment(SwingConstants.CENTER);
         feedbackLabel.setVerticalAlignment(SwingConstants.CENTER);
 
-        if (getFeedback()) {
+        if (drinkRecords.getFeedback()) {
             feedbackLabel.setText("Great! You have a healthy drinking record");
             feedbackLabel.setIcon(new ImageIcon(new ImageIcon("images/happy_face.png")
                     .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
@@ -250,15 +257,12 @@ public class GUI implements ActionListener {
         myList.addElement(newDrinkRecord);
     }
 
-    // EFFECTS: give positive/negative feedback based on the amount of water and other drinks
-    public boolean getFeedback() {
-        if (drinkRecords.isEmpty()) {
-            return false;
-        }
-        if (drinkRecords.getWaterDrinkAmount() >= drinkRecords.getOtherDrinkAmount()) {
-            return true;
-        } else {
-            return false;
+
+    private void printLog() {
+        System.out.println("Application Event Log:");
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event);
+            System.out.println("\n");
         }
     }
 }

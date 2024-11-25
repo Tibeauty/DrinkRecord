@@ -14,13 +14,15 @@ public class DrinkRecords {
 
     // MODIFIES: this
     // EFFECTS: initalize
-    public DrinkRecords() { 
+    public DrinkRecords() {
         this.drinkRecords = new ArrayList<>();
     }
 
     // MODIFIES: this
     // EFFECTS: adds a drink record to the list
     public void addDrinkRecord(DrinkRecord drinkRecord) {
+        EventLog.getInstance().logEvent(new Event("Add new drinking record: " + drinkRecord.getType()
+                + " " + drinkRecord.getAmount() + "(mL)"));
         this.drinkRecords.add(drinkRecord);
     }
 
@@ -45,7 +47,6 @@ public class DrinkRecords {
         }
         return otherDrinksAmount;
     }
-
 
     // EFFECTS: returns true if there are no drink records, false otherwise
     public boolean isEmpty() {
@@ -73,13 +74,14 @@ public class DrinkRecords {
     // EFFECTS: returns true if there are no drink records, false otherwise
     public void remove(DrinkRecord drinkRecord) {
         this.drinkRecords.remove(drinkRecord);
+        EventLog.getInstance().logEvent(new Event("Remove drinking record: " + drinkRecord.getType()
+                + " " + drinkRecord.getAmount() + "(mL)"));
     }
 
-    //  EFFECTS: returns the drinkrecords list
+    // EFFECTS: returns the drinkrecords list
     public List<DrinkRecord> getDrinkRecords() {
         return this.drinkRecords;
     }
-
 
     // EFFECTS: returns things in this DrinkRecords as a JSON array
     public JSONArray drinkRecordsToJson() {
@@ -90,5 +92,19 @@ public class DrinkRecords {
         }
 
         return jsonArray;
+    }
+
+    // EFFECTS: give positive/negative feedback based on the amount of water and
+    // other drinks
+    public boolean getFeedback() {
+        EventLog.getInstance().logEvent(new Event("Get feedback for drinking records"));
+        if (drinkRecords.isEmpty()) {
+            return false;
+        }
+        if (getWaterDrinkAmount() >= getOtherDrinkAmount()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

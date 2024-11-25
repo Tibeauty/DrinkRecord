@@ -128,4 +128,36 @@ public class DrinkRecordsTest {
         drinkRecords.addDrinkRecord(juice);
         assertEquals(drinkRecords.drinkRecordsToJson().toString(), jsonArray.toString());
     }
+
+    @Test
+    void testGetFeedbackWhenEmpty() {
+        assertFalse(drinkRecords.getFeedback());
+    }
+
+    @Test
+    void testGetFeedbackWithMoreWater() {
+        drinkRecords.addDrinkRecord(water); 
+        drinkRecords.addDrinkRecord(juice); 
+
+        assertTrue(drinkRecords.getFeedback());
+    }
+
+    @Test
+    void testGetFeedbackWithMoreOtherDrinks() {
+        DrinkRecord soda = new DrinkRecord("soda", 400); 
+        drinkRecords.addDrinkRecord(juice); 
+        drinkRecords.addDrinkRecord(soda); 
+
+
+        drinkRecords.addDrinkRecord(water); // 500 ml water
+        assertFalse(drinkRecords.getFeedback());
+    }
+
+    @Test
+    void testGetFeedbackWithEqualAmounts() {
+        drinkRecords.addDrinkRecord(new DrinkRecord("water", 300));
+        drinkRecords.addDrinkRecord(new DrinkRecord("juice", 300));
+
+        assertTrue(drinkRecords.getFeedback());
+    }
 }
