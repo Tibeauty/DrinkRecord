@@ -19,3 +19,8 @@ I am developing an application that will allow users to track their daily water 
 - user add a new drink record to the application
 - user remove a drink record in the application
 - user get the feedback for drink records in the application
+
+## Phase 4: Task 3
+- First, I think both DrinkRecordSummary and GUI class both contain the responsible for more than one thing. To improve Cohension, I can separate the methods in each class into different small classes. For example, for GUI class, I can extract a class calld GUIComponents to handles the layout and initialization of GUI components and a class called DrinkRecordManager to manages drink records, including adding, removing, saving, and loading.
+
+- Secondly, I think there are some duplication in the DrinkRecordSummary and GUI class. I can make a new abstract class to implement these similar methods, and let DrinkRecordSummary and GUI class to extends this new class and delete original methods in each class. This helps the code to reduce duplication.
