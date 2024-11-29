@@ -107,4 +107,13 @@ public class DrinkRecords {
             return false;
         }
     }
+    
+    // EFFECTS: print out all events in the Eventlog
+    public void printLog() {
+        System.out.println("Application Event Log:");
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event);
+            System.out.println("\n");
+        }
+    }
 }

@@ -73,7 +73,7 @@ public class GUI implements ActionListener {
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                printLog();
+                drinkRecords.printLog();
                 System.exit(0);
             }
         });
@@ -258,11 +258,5 @@ public class GUI implements ActionListener {
     }
 
 
-    private void printLog() {
-        System.out.println("Application Event Log:");
-        for (Event event : EventLog.getInstance()) {
-            System.out.println(event);
-            System.out.println("\n");
-        }
-    }
+
 }

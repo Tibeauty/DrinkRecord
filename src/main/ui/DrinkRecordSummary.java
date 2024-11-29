@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+
 // The DrinkRecordSummary class provides the summary of drinkrecords and interact with
 // user input.
 public class DrinkRecordSummary {
@@ -38,6 +40,8 @@ public class DrinkRecordSummary {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
+                System.out.println("Quitting the application...");
+                drinkRecords.printLog(); 
                 keepGoing = false;
             } else {
                 processCommand(command);
@@ -69,12 +73,7 @@ public class DrinkRecordSummary {
 
     // EFFECTS: give positive/negative feedback based on the amount of water and other drinks
     public void getFeedback() {
-        if (drinkRecords.isEmpty()) {
-            System.out.println("Error: No drinking record to summary. Trying adding a drinking record first!");
-            return;
-        }
-
-        if (drinkRecords.getWaterDrinkAmount() >= drinkRecords.getOtherDrinkAmount()) {
+        if (drinkRecords.getFeedback()) {
             System.out.println("Great! You have a healthy drinking record");
             System.out.println("Keep it up! (^v^)");
         } else {
@@ -169,12 +168,14 @@ public class DrinkRecordSummary {
     }
 
     // MODIFIES: this
-    // EFFECTS: remove give drinkRecord from the list of drinkRecords
+    // EFFECTS: removes the given drinkRecord from the list of drinkRecords
     public void removeDrinkRecord(DrinkRecord drinkRecord) {
         if (drinkRecords.contains(drinkRecord)) {
             drinkRecords.remove(drinkRecord);
-            currentRecordIndex -= 1;
-            System.out.println("The drinking record has been successfully removed.");
+            if (currentRecordIndex > 0) {
+                currentRecordIndex -= 1; // Decrement only if index is greater than 0
+            }
+            System.out.println("The drinking record has abeen successfully removed.");
         } else {
             System.out.println("The drinking record was not found.");
         }
